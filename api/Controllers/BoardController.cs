@@ -1,36 +1,61 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.BoardDTOs;
 using api.Models;
+using api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Route("api/board")]
+    [Route("api/boards")]
     [ApiController]
     public class BoardController : ControllerBase
     {
+        private readonly IBoardService _boardService;
         private readonly ApplicationDBContext _context;
 
-        public BoardController(ApplicationDBContext context) 
+        public BoardController(ApplicationDBContext context, IBoardService boardService) 
         { 
             _context = context; 
-        
+            _boardService = boardService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Board>>> GetAllBoards()
+        public async Task<ActionResult<List<SimpleBoardResponse>>> GetAllBoards()
         {
-            var Boards = await 
+            var boards = await _boardService.GetAllBoardsAsync();
+            return Ok(boards.Select(b => SimpleBoardResponse.CreateFromBoard(b)).ToList());
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Board>> GetBoard()
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<BoardResponse>> GetBoard(int id)
         {
-            
+            var board = await _boardService.GetBoardAsync(id);
+            if (board == null) return NotFound();
+            return Ok(BoardResponse.CreateFromBoard(board));
         }
 
+        [HttpPost]
+        public async Task<ActionResult<SimpleBoardResponse>> CreateBoard([FromBody] CreateBoardRequest req)
+        {
+            var newBoard = await _boardService.CreateBoardAsync(req);
+            return Ok(SimpleBoardResponse.CreateFromBoard(newBoard));
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteBoard(int id)
+        {
+            var result = await _boardService.DeleteBoardAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }
