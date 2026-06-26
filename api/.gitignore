@@ -6,7 +6,9 @@
 # dotenv files
 .env
 
+#ignore db
 Migrations/
+.db
 
 # User-specific files
 *.rsuser
