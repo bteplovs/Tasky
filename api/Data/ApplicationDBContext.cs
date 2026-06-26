@@ -11,9 +11,10 @@ namespace api.Data
     {
         public ApplicationDBContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {}
-        
-        public DbSet<TaskList> TaskLists { get; set; } = null!;
-        public DbSet<UserTask> UserTasks { get; set; } = null!;
+
+        public DbSet<Board> Boards {get; set; }
+        public DbSet<BoardColumn> BoardColumns { get; set; } = null!;
+        public DbSet<TaskItem> TaskItems { get; set; } = null!;
 
     }
 }
