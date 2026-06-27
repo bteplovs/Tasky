@@ -1,3 +1,5 @@
+using api.DTOs.BoardColumnDTOs;
+using api.DTOs.TaskItemDTOs;
 using api.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -48,18 +50,5 @@ namespace api.DTOs.BoardDTOs
                     }).ToList() ?? new List<ColumnBoardResponse>()
             };
         }
-    }
-
-    public class ColumnBoardResponse
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public List<TaskBoardResponse> Tasks { get; set; } = new();
-    }
-
-    public class TaskBoardResponse
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
     }
 }

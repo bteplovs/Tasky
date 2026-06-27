@@ -21,7 +21,6 @@ namespace api.Services
     {
         public async Task<Board> CreateBoardAsync(CreateBoardRequest req)
         {
-
             var board = new Board
             {
                 Name = req.Name,

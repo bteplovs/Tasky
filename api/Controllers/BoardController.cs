@@ -16,11 +16,9 @@ namespace api.Controllers
     public class BoardController : ControllerBase
     {
         private readonly IBoardService _boardService;
-        private readonly ApplicationDBContext _context;
 
-        public BoardController(ApplicationDBContext context, IBoardService boardService) 
+        public BoardController(IBoardService boardService) 
         { 
-            _context = context; 
             _boardService = boardService;
         }
 
