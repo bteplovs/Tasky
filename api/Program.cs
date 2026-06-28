@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 
 // Services
 builder.Services.AddScoped<IBoardService, BoardService>();
+builder.Services.AddScoped<IColumnService, ColumnService>();
 
 var app = builder.Build();
 

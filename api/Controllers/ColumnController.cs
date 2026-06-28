@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace api.Controllers
 {
+    [Route("api/boards/{id}")]
+    [ApiController]
     public class ColumnController : ControllerBase
     {
         private readonly IColumnService _columnService;
@@ -24,7 +26,5 @@ namespace api.Controllers
             var newColumn = await _columnService.CreatColumnAsync(req);
             return Ok(ColumnBoardResponse.FromBoardColumn(newColumn));
         }
-
-
     }
 }

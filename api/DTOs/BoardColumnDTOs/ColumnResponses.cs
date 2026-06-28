@@ -13,16 +13,6 @@ namespace api.DTOs.BoardColumnDTOs
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public List<TaskBoardResponse>? Tasks { get; set; } = new();
-
-        // Strictly for creating new columns, in this case there are no tasks in a new column
-        public static ColumnBoardResponse FromBoardColumn(BoardColumn boardColumn)
-        {
-            return new ColumnBoardResponse
-            {
-                Id = boardColumn.Id,
-                Name = boardColumn.Name,
-            };
-        }
     }
     
 }
