@@ -16,7 +16,7 @@ namespace api.DTOs.BoardDTOs
             {
                 Id = board.Id,
                 Name = board.Name,
-                NumColumns = board.Columns?.Count ?? 0,
+                // NumColumns = board.Columns?.Count ?? 0,
                 NumTasks = board.Columns?.SelectMany(c => c.Tasks).Count() ?? 0
             };
         }

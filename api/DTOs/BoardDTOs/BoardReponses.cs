@@ -9,7 +9,6 @@ namespace api.DTOs.BoardDTOs
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int NumColumns { get; set; }
         public int NumTasks { get; set; }
     }
 
