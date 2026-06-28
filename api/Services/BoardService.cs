@@ -50,7 +50,10 @@ namespace api.Services
         public async Task<List<Board>> GetAllBoardsAsync()
         {
 
-            var boards = await dbContext.Boards.ToListAsync();
+            var boards = await dbContext.Boards
+                .Include(b => b.Columns)
+                .ThenInclude(c => c.Tasks)
+                .ToListAsync();
 
             return boards;
         }
