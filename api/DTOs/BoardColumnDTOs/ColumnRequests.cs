@@ -7,7 +7,6 @@ namespace api.DTOs.BoardColumnDTOs
 {
     public class CreateColumnRequest
     {
-        public int BoardId { get; set; }
         public string Name { get; set; } = string.Empty;
     }
 }

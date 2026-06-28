@@ -16,20 +16,20 @@ namespace api.Services
         // POST
         // PATCH
         // DELETE
-        Task<BoardColumn> CreatColumnAsync(CreateColumnRequest req);
+        Task<BoardColumn> CreatColumnAsync(CreateColumnRequest req, int boardId);
     }
 
     public class ColumnService(ApplicationDBContext dbContext) : IColumnService
     {
-        public async Task<BoardColumn> CreatColumnAsync(CreateColumnRequest req)
+        public async Task<BoardColumn> CreatColumnAsync(CreateColumnRequest req, int boardId)
         {
             var boardColumn = new BoardColumn
             {
-                BoardId = req.BoardId,
+                BoardId = boardId,
                 Name = req.Name,
             }; 
 
-            await dbContext.BoardColumns.AddAsync(boardColumn);
+            dbContext.BoardColumns.Add(boardColumn);
             await dbContext.SaveChangesAsync();
 
             return boardColumn;

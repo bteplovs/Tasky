@@ -26,7 +26,7 @@ namespace api.Controllers
         public async Task<ActionResult<List<SimpleBoardResponse>>> GetAllBoards()
         {
             var boards = await _boardService.GetAllBoardsAsync();
-            return Ok(boards.Select(b => SimpleBoardResponse.CreateFromBoard(b)).ToList());
+            return Ok(boards.Select(b => b.ToSimpleBoardResponse()).ToList());
         }
 
         [HttpGet("{id:int}")]
@@ -34,25 +34,21 @@ namespace api.Controllers
         {
             var board = await _boardService.GetBoardAsync(id);
             if (board == null) return NotFound();
-            return Ok(BoardResponse.CreateFromBoard(board));
+            return Ok(board.ToBoardResponse());
         }
 
         [HttpPost]
         public async Task<ActionResult<SimpleBoardResponse>> CreateBoard([FromBody] CreateBoardRequest req)
         {
             var newBoard = await _boardService.CreateBoardAsync(req);
-            return Ok(SimpleBoardResponse.CreateFromBoard(newBoard));
+            return Ok(newBoard.ToSimpleBoardResponse());
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteBoard(int id)
         {
             var result = await _boardService.DeleteBoardAsync(id);
-            if (!result)
-            {
-                return NotFound();
-            }
-
+            if (!result) return NotFound();
             return Ok();
         }
     }

@@ -14,7 +14,7 @@ namespace api.DTOs.TaskItemDTOs
             {
                 Id = taskItem.Id,
                 Title = taskItem.Title
-            }
+            };
         }
     }
 }

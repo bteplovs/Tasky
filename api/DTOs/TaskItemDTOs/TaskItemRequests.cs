@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace api.DTOs.TaskItemDTOs
 {
-    public class TaskItemRequests
+    public class CreateTaskItemRequest
     {
-        public int Id { get; set; } // col ID
-        public string Name { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
     }
 }
