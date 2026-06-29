@@ -23,7 +23,7 @@ namespace api.Services
         {
             var board = new Board
             {
-                Name = req.Name,
+                Name = req.boardName,
             };
 
             dbContext.Boards.Add(board);
