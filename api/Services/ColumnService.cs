@@ -26,7 +26,7 @@ namespace api.Services
             var boardColumn = new BoardColumn
             {
                 BoardId = boardId,
-                Name = req.Name,
+                Name = req.ColumnName,
             }; 
 
             dbContext.BoardColumns.Add(boardColumn);

@@ -1,8 +1,13 @@
+import type { TaskBoard } from "../types/boardTypes";
 
-const TaskCard = () => {
+interface TaskCardProps {
+    task: TaskBoard;
+}
+
+const TaskCard = ({ task }: TaskCardProps) => {
     return (
         <div>
-
+            
         </div>
     )
 }

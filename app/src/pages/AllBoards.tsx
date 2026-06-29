@@ -41,11 +41,8 @@ const AllBoards = () => {
             return;
         }
 
-        console.log(boardName)
-
         try {
             const res = await axios.post("http://localhost:5267/api/boards", {boardName})
-            console.log(boardName);
             setBoards(prev => [...prev, res.data]);
             setBoardName("");
             setBoardNameError({
