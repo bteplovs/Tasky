@@ -75,7 +75,7 @@ const Board = () => {
 
             <div className="flex flex-1 gap-4 overflow-x-auto overflow-y-hidden pt-4">
                 {board?.columns.map((item) => (
-                    <Column key={item.id} column={item} />
+                    <Column key={item.id} column={item} onTaskCreated={getBoard}/>
                 ))}
                 <button
                     onClick={() => setIsModalOpen(true)}
